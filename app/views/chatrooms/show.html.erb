@@ -9,7 +9,7 @@
     </div>
   <% end %>
 
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>" data-controller='chatroom'>
     <% @chatroom.messages.each do |message| %>
       <div class="message-container" id="message-<%= message.id %>">
         <i class="author">
