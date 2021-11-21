@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>#<%= @chatroom.name %></h1>
+
+  <h2>Add a message</h2>
+  <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+    <div class="d-flex" style='position: relative;'>
+      <%= f.input :content, label: false, wrapper_html: { class: 'w-75' }, placeholder: "Message ##{@chatroom.name}" %>
+      <%= f.submit 'Send', class: 'btn btn-primary w-25 h-100', style: 'position: absolute; right: 25%; top: 0;' %>
+    </div>
+  <% end %>
+
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+    <% @chatroom.messages.each do |message| %>
+      <div class="message-container" id="message-<%= message.id %>">
+        <i class="author">
+          <span><%= message.user.nickname %></span>
+          <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        </i>
+        <p><%= message.content %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
